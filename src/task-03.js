@@ -1,27 +1,32 @@
 const randomIntegerFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-const makeTransaction = (transaction) => {
-    const delay = randomIntegerFromInterval(200, 500);
-    return new Promise((resolve, reject) => {
-    setTimeout(() => {
-    const canProcess = Math.random() > 0.3;
-    if (canProcess) {
-      let infTransaction = { transactionId: transaction.id, delay }
-        resolve(infTransaction)
-      };
-      reject(transaction.id);
-  }, delay);
-    })
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
   
-};
-const logSuccess = (id, time) => {
-  console.log(`Transaction ${infTransaction.transactionId} processed in ${time}ms`);
-};
-const logError = id => {
-  console.warn(`Error processing transaction ${id}. Please try again later.`);
-};
+  const makeTransaction = transaction => {
+    const delay = randomIntegerFromInterval(200, 500);
 
+    return promise = new Promise ((resolve, reject) => {
+        setTimeout(() => {
+            const canProcess = Math.random() > 0.3;
+        
+            if (canProcess) {
+              let infTransaction = { transactionId: transaction.id, delay }
+              resolve(infTransaction);
+            } else {
+              reject(transaction.id);
+            }
+          }, delay);
+        })
+    }
+  
+  const logSuccess = (infTransaction) => {
+    console.log(`Transaction ${infTransaction.transactionId} processed in ${infTransaction.delay}ms`);
+  };
+  
+  const logError = id => {
+    console.warn(`Error processing transaction ${id}. Please try again later.`);
+};
+  
 
 makeTransaction({ id: 70, amount: 150 })
   .then(logSuccess)
